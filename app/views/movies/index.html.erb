@@ -5,21 +5,29 @@
 
 
 
-<form accept-charset="UTF-8" action="/movies">
+<form accept-charset="UTF-8" action="/movies" class="form-inline">
   <input name="utf8" type="hidden" value="&#x2713;" />
   
-  <label for="rating">G</label>
-  <input type="checkbox" id="rating_g" name="rating[]" value="G" class="btn btn-primary"/>
-  <label for="rating">PG</label>
-  <input type="checkbox" id="rating_pg" name="rating[]" value="PG" class="btn btn-primary"/>
-  <label for="rating">PG-13</label>
-  <input type="checkbox" id="rating_pg_13" name="rating[]" value="PG-13" class="btn btn-primary"/>
-  <label for="rating">R</label>
-  <input type="checkbox" id="rating_r" name="rating[]" value="R" class="btn btn-primary"/>
-  <label for="rating">NC-17</label>
-  <input type="checkbox" id="rating_nc_17" name="rating[]" value="NC-17" class="btn btn-primary"/>
+    <input type="checkbox" id="rating_g" name="rating[]" value="G" class="form-check-input mb-2 mr-2"/>
+    <label for="rating" class="form-check-label mb-2 mr-5">G</label>
   
-  <input name="commit" type="submit" value="Search" class="btn btn-primary"/>
+  
+    <input type="checkbox" id="rating_pg" name="rating[]" value="PG" class="form-check-input mb-2 mr-2"/>
+    <label for="rating" class="form-check-label mb-2 mr-5">PG</label>
+ 
+  
+    <input type="checkbox" id="rating_pg_13" name="rating[]" value="PG-13" class="form-check-input mb-2 mr-2"/>
+    <label for="rating" class="form-check-label mb-2 mr-5">PG-13</label>
+  
+  
+    <input type="checkbox" id="rating_r" name="rating[]" value="R" class="form-check-input mb-2 mr-2"/>
+    <label for="rating" class="form-check-label mb-2 mr-5">R</label>
+  
+    <input type="checkbox" id="rating_nc_17" name="rating[]" value="NC-17" class="form-check-input mb-2 mr-2"/>
+    <label for="rating" class="form-check-label mb-2 mr-5">NC-17</label>
+  
+  
+  <input name="commit" type="submit" value="Search" class="btn btn-primary mb-2"/>
 </form>
 
 <table class="table table-striped col-md-12" id="movies">
