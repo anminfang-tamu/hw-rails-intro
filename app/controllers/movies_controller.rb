@@ -7,25 +7,44 @@ class MoviesController < ApplicationController
     end
   
     def index
-      # @movies = Movie.all
+      
+      session[:rating] = params[:rating] unless params[:rating].nil?
+      session[:sort] = params[:sort] unless params[:sort].nil?
       
       puts "------------------------"
-      puts params[:rating]
+      p params[:rating]
+      p session[:rating]
+      
+      @params_rating = params[:rating]
+      @params_sort = params[:sort]
+      @session_rating = session[:rating]
+      @session_sort = session[:sort]
+      @sort = ""
+      @css_title = ""
+      @css_release_date = ""
+      
+      if ((@params_rating.nil? && !@session_rating.nil?) || (@params_sort.nil? && !@session_sort.nil?))
+        redirect_to movies_path("rating" => @session_rating, "sort" => @session_sort)
+      elsif !@params_rating.nil? || !@params_sort.nil?
+        if !params[:ratings].nil?
+          array_ratings = params[:rating].keys
+          @movies = Movie.where(rating: array_ratings).order(@session_sort)
+          # @movies = Movie.filter(@params_rating).order(@session_sort)
+        else
+          @movies = Movie.all.order(@session_sort)
+        end
+      elsif !@session_rating.nil? || !@session_sort.nil?
+        redirect_to movies_path("rating" => @session_rating, "sort" => @session_sort)
+      else
+        @movies = Movie.all
+      end
       
       @movies = if params[:rating]
                   Movie.filter(params[:rating])
                 else
                   Movie.order(params[:sort])
                 end
-                  
       
-      
-      # puts params.slice(:rating)
-      # @movies = Movie.order(params[:sort])
-      
-      @sort = ""
-      @css_title = ""
-      @css_release_date = ""
       
       if params[:sort]
         @sort = params[:sort]
