@@ -9,6 +9,23 @@ class MoviesController < ApplicationController
     def index
       # @movies = Movie.all
       @movies = Movie.order(params[:sort])
+      
+      @sort = ""
+      
+      if params[:sort]
+        @sort = params[:sort]
+      else
+        @sort = nil
+      end
+      
+      if @sort == 'title'
+        @css_title = "bg-warning hilite"
+        @css_release_date = ""
+      elsif @sort == 'release_date'
+        @css_title = ""
+        @css_release_date = "bg-warning hilite"
+      end
+
     end
   
     def new
@@ -45,4 +62,15 @@ class MoviesController < ApplicationController
     def movie_params
       params.require(:movie).permit(:title, :rating, :description, :release_date)
     end
-  end
+
+    def change_background(id)
+      case id
+        when "title_header"
+          "bg-yellow"
+        when "release_date_header"
+          "bg-yellow"
+        else
+          ""
+      end
+    end
+end
