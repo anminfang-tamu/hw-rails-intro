@@ -3,6 +3,25 @@
 
 <%#  Part 2: Start here... %>
 
+
+
+<form accept-charset="UTF-8" action="/movies">
+  <input name="utf8" type="hidden" value="&#x2713;" />
+  
+  <label for="rating">G</label>
+  <input type="checkbox" id="rating_g" name="rating[]" value="G" class="btn btn-primary"/>
+  <label for="rating">PG</label>
+  <input type="checkbox" id="rating_pg" name="rating[]" value="PG" class="btn btn-primary"/>
+  <label for="rating">PG-13</label>
+  <input type="checkbox" id="rating_pg_13" name="rating[]" value="PG-13" class="btn btn-primary"/>
+  <label for="rating">R</label>
+  <input type="checkbox" id="rating_r" name="rating[]" value="R" class="btn btn-primary"/>
+  <label for="rating">NC-17</label>
+  <input type="checkbox" id="rating_nc_17" name="rating[]" value="NC-17" class="btn btn-primary"/>
+  
+  <input name="commit" type="submit" value="Search" class="btn btn-primary"/>
+</form>
+
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>

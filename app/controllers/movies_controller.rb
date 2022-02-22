@@ -8,7 +8,20 @@ class MoviesController < ApplicationController
   
     def index
       # @movies = Movie.all
-      @movies = Movie.order(params[:sort])
+      
+      puts "------------------------"
+      puts params[:rating]
+      
+      @movies = if params[:rating]
+                  Movie.filter(params[:rating])
+                else
+                  Movie.order(params[:sort])
+                end
+                  
+      
+      
+      # puts params.slice(:rating)
+      # @movies = Movie.order(params[:sort])
       
       @sort = ""
       @css_title = ""
@@ -29,6 +42,12 @@ class MoviesController < ApplicationController
       end
 
     end
+    
+    # def filtering_params(params)
+    #   if params
+    #     params.slice(:rating_g, :rating_pg, :rating_nc_17, :rating_pg_13, :rating_r)
+    #   end
+    # end
   
     def new
       # default: render 'new' template
